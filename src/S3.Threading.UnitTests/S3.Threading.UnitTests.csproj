@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\S3.AutoBatcher\S3.AutoBatcher.csproj" />
+    <ProjectReference Include="..\S3.Threading\S3.Threading.csproj" />
   </ItemGroup>
 
 </Project>
