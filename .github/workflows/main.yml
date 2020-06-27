@@ -120,14 +120,26 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: ./src/TestResults/coverage.info   
       
-        
-    - name: Generate nuget package
+    #s3 threading    
+    - name: Generate nuget package S3.Threading
       run: dotnet pack S3.Threading.csproj --configuration Release -o nupkg
       working-directory: ./src/S3.Threading
    
-    - name: Publish nuget package
+    - name: Publish nuget package S3.Threading
       run: find . -name S3.Threading.*.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
       env:
         nuget_api_key: ${{ secrets.NUGET_API_KEY }}
       working-directory: ./src/S3.Threading/nupkg
+      if: ${{ github.event_name != 'pull_request' && github.ref!='refs/heads/master' && (steps.gitversion.outputs.Major>0 || steps.gitversion.outputs.Minor>0) }}
+    
+    #s3 Testing nunit
+     - name: Generate nuget package S3.Testing.NUnit
+      run: dotnet pack S3.Testing.NUnit.csproj --configuration Release -o nupkg
+      working-directory: ./src/S3.Testing.NUnit
+   
+    - name: Publish nuget package S3.Testing.NUnit
+      run: find . -name S3.Testing.NUnit.*.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+      env:
+        nuget_api_key: ${{ secrets.NUGET_API_KEY }}
+      working-directory: ./src/S3.Testing.NUnit/nupkg
       if: ${{ github.event_name != 'pull_request' && github.ref!='refs/heads/master' && (steps.gitversion.outputs.Major>0 || steps.gitversion.outputs.Minor>0) }}
