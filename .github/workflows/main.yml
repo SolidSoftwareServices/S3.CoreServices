@@ -133,7 +133,7 @@ jobs:
       if: ${{ github.event_name != 'pull_request' && github.ref!='refs/heads/master' && (steps.gitversion.outputs.Major>0 || steps.gitversion.outputs.Minor>0) }}
     
     #s3 Testing nunit
-     - name: Generate nuget package S3.Testing.NUnit
+    - name: Generate nuget package S3.Testing.NUnit
       run: dotnet pack S3.Testing.NUnit.csproj --configuration Release -o nupkg
       working-directory: ./src/S3.Testing.NUnit
    
