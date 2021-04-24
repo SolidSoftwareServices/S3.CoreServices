@@ -32,7 +32,7 @@ project {
     buildType(Step1_ID)
     buildType(Step2_ID)
     buildType(Step3_ID)
-    
+
 	sequential{
 	   buildType(Step1_ID)
        
@@ -89,16 +89,16 @@ object Step2_ID : BuildType({
             }
         }
     }
-    triggers {
-        finishBuildTrigger {
-            buildType = "${Step1_ID.id}"
-            successfulOnly = true
-        }
-    }
-    dependencies {
-        snapshot(Step1_ID) {
-        }
-    }
+    // triggers {
+    //     finishBuildTrigger {
+    //         buildType = "${Step1_ID.id}"
+    //         successfulOnly = true
+    //     }
+    // }
+    // dependencies {
+    //     snapshot(Step1_ID) {
+    //     }
+    // }
 
 })
 
@@ -113,16 +113,16 @@ object Step3_ID : BuildType({
             }
         }
     }
-    triggers {
-        finishBuildTrigger {
-            buildType = "${Step1_ID.id}"
-            successfulOnly = true
-        }
-    }
-    dependencies {
-        snapshot(Step1_ID) {
-        }
-    }
+    // triggers {
+    //     finishBuildTrigger {
+    //         buildType = "${Step1_ID.id}"
+    //         successfulOnly = true
+    //     }
+    // }
+    // dependencies {
+    //     snapshot(Step1_ID) {
+    //     }
+    // }
 
 })
 object Step4_ID : BuildType({
