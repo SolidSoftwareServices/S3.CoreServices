@@ -33,6 +33,7 @@ project {
     buildType(Step1_ID)
 	buildType(Step2_ID)
 	buildType(Step3_ID)
+	buildType(Step4_ID)
 	sequence{
 	   build(Step1_ID)
 	   parallel{
