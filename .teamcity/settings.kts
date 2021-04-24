@@ -31,14 +31,16 @@ version = "2020.2"
 project {
     buildType(Step1_ID)
     buildType(Step2_ID)
+    buildType(Step3_ID)
+    
 	sequential{
 	   buildType(Step1_ID)
-       buildType(Step2_ID) 
-	   /*  parallel{
+       
+	   parallel{
 			buildType(Step2_ID)
 			buildType(Step3_ID)
 	   }
-	   buildType(Step4_ID)*/
+	   //buildType(Step4_ID)
 	}
 }
 
@@ -109,6 +111,16 @@ object Step3_ID : BuildType({
             scriptMode = script {
                 content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%.%system.teamcity.buildType.id% %env.BUILD_NUMBER%"""
             }
+        }
+    }
+    triggers {
+        finishBuildTrigger {
+            buildType = "${Step1_ID.id}"
+            successfulOnly = true
+        }
+    }
+    dependencies {
+        snapshot(Step1_ID) {
         }
     }
 
