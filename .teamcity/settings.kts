@@ -30,13 +30,13 @@ version = "2020.2"
 
 project {
   
-	sequence{
-	   build(Step1_ID)
-	   parallel{
-			build(Step2_ID)
-			build(Step3_ID)
+	sequential{
+	   buildType(Step1_ID)
+	    parallel{
+			buildType(Step2_ID)
+			buildType(Step3_ID)
 	   }
-	   build(Step4_ID)
+	   buildType(Step4_ID)
 	}
 }
 
