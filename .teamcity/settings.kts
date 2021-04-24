@@ -87,6 +87,16 @@ object Step2_ID : BuildType({
             }
         }
     }
+    triggers {
+        finishBuildTrigger {
+            buildType = "${Step1_ID.id}"
+            successfulOnly = true
+        }
+    }
+    dependencies {
+        snapshot(Step1_ID) {
+        }
+    }
 
 })
 
