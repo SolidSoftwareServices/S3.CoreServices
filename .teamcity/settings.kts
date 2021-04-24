@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dotnetBuild
-import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dotnetTest
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.PullRequests
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.pullRequests
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 
 /*
@@ -29,27 +30,39 @@ version = "2020.2"
 
 project {
 
-    buildType(SampleBuildConfigurationName)
+    buildType(Step1_ID)
 }
 
-object SampleBuildConfigurationName : BuildType({
-    name = "SampleBuildConfigurationName"
+object Step1_ID : BuildType({
+    name = "SampleBuild_Step1"
 
     vcs {
         root(DslContext.settingsRoot)
     }
 
     steps {
-        dotnetBuild {
-            projects = "src/S3.Core.sln"
-        }
-        dotnetTest {
-            projects = "src/S3.Threading.UnitTests/S3.Threading.UnitTests.csproj"
+        powerShell {
+            name = "Run payload"
+            scriptMode = script {
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+            }
         }
     }
 
     triggers {
         vcs {
+        }
+    }
+
+    features {
+        pullRequests {
+            vcsRootExtId = "SampleProjectName_VCSRootID"
+            provider = github {
+                authType = token {
+                    token = "credentialsJSON:7a955ca5-1d1b-432f-9df4-e43064c895fb"
+                }
+                filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
+            }
         }
     }
 })
