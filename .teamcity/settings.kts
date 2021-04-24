@@ -81,7 +81,7 @@ object Step1_ID : BuildType({
 object Step2_ID : BuildType({
     name = "SampleBuild_Step2"
     params {
-        param(buildNumberPattern, Step1_ID.depParamRefs["env.BUILD_NUMBER"])
+        param(buildNumberPattern, "%dep.SampleBuild_Step1_ID.env.BUILD_NUMBER%")
     }
 
     
@@ -115,7 +115,7 @@ object Step2_ID : BuildType({
 object Step3_ID : BuildType({
     name = "SampleBuild_Step3"
     params {
-        param(buildNumberPattern, Step1_ID.depParamRefs["env.BUILD_NUMBER"])
+        param(buildNumberPattern, "%dep.SampleBuild_Step1_ID.env.BUILD_NUMBER%")
     }
 
     vcs {
