@@ -30,8 +30,10 @@ version = "2020.2"
 
 project {
     buildType(Step1_ID)
+    buildType(Step2_ID)
 	sequential{
 	   buildType(Step1_ID)
+       buildType(Step2_ID)
 	   /*  parallel{
 			buildType(Step2_ID)
 			buildType(Step3_ID)
