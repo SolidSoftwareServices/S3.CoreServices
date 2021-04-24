@@ -31,6 +31,16 @@ version = "2020.2"
 project {
 
     buildType(Step1_ID)
+	buildType(Step2_ID)
+	buildType(Step3_ID)
+	sequence{
+	   build(Step1_ID)
+	   parallel{
+			build(Step2_ID)
+			build(Step3_ID)
+	   }
+	   build(Step4_ID)
+	}
 }
 
 object Step1_ID : BuildType({
@@ -65,4 +75,45 @@ object Step1_ID : BuildType({
             }
         }
     }
+})
+
+object Step2_ID : BuildType({
+    name = "SampleBuild_Step2"
+
+    steps {
+        powerShell {
+            name = "Run payload"
+            scriptMode = script {
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+            }
+        }
+    }
+
+})
+
+object Step3_ID : BuildType({
+    name = "SampleBuild_Step3"
+
+    steps {
+        powerShell {
+            name = "Run payload"
+            scriptMode = script {
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+            }
+        }
+    }
+
+})
+object Step4_ID : BuildType({
+    name = "SampleBuild_Step4"
+
+    steps {
+        powerShell {
+            name = "Run payload"
+            scriptMode = script {
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+            }
+        }
+    }
+
 })
