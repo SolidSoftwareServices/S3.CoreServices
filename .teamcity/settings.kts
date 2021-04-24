@@ -80,7 +80,11 @@ object Step1_ID : BuildType({
 
 object Step2_ID : BuildType({
     name = "SampleBuild_Step2"
-    buildNumberPattern = "${Step1_ID.depParamRefs["env.BUILD_NUMBER"]}"
+    params {
+        param(buildNumberPattern, Step1_ID.depParamRefs["env.BUILD_NUMBER"])
+    }
+
+    
     vcs {
         root(DslContext.settingsRoot)
     }
@@ -110,7 +114,9 @@ object Step2_ID : BuildType({
 
 object Step3_ID : BuildType({
     name = "SampleBuild_Step3"
-    buildNumberPattern = "${Step1_ID.depParamRefs["env.BUILD_NUMBER"]}"
+    params {
+        param(buildNumberPattern, Step1_ID.depParamRefs["env.BUILD_NUMBER"])
+    }
 
     vcs {
         root(DslContext.settingsRoot)
