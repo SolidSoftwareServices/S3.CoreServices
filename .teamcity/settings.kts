@@ -1,9 +1,10 @@
+package _Self.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.PullRequests
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.pullRequests
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
-
+import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.finishBuildTrigger
 /*
 The settings script is an entry point for defining a TeamCity
 project hierarchy. The script should contain a single call to the
@@ -81,8 +82,7 @@ object Step1_ID : BuildType({
 object Step2_ID : BuildType({
     name = "SampleBuild_Step2"
     
-    buildNumberPattern = "%dep.SampleBuild_Step1_ID.env.BUILD_NUMBER%"
-    
+    buildNumberPattern = "${Step1_ID.depParamRefs["env.BUILD_NUMBER"]}"
 
     
     vcs {
@@ -97,12 +97,12 @@ object Step2_ID : BuildType({
             }
         }
     }
-    // triggers {
-    //     finishBuildTrigger {
-    //         buildType = "${Step1_ID.id}"
-    //         successfulOnly = true
-    //     }
-    // }
+    triggers {
+        finishBuildTrigger {
+            buildType = "${Step1_ID.id}"
+            successfulOnly = true
+        }
+    }
     dependencies {
         snapshot(Step1_ID) {
             reuseBuilds = ReuseBuilds.NO
@@ -128,12 +128,12 @@ object Step3_ID : BuildType({
             }
         }
     }
-    // triggers {
-    //     finishBuildTrigger {
-    //         buildType = "${Step1_ID.id}"
-    //         successfulOnly = true
-    //     }
-    // }
+    triggers {
+        finishBuildTrigger {
+            buildType = "${Step1_ID.id}"
+            successfulOnly = true
+        }
+    }
     dependencies {
         snapshot(Step1_ID) {
             reuseBuilds = ReuseBuilds.NO
