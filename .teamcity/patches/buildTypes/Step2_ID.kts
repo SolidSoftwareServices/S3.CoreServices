@@ -13,7 +13,7 @@ changeBuildType(RelativeId("Step2_ID")) {
     check(buildNumberPattern == "%build.counter%") {
         "Unexpected option value: buildNumberPattern = $buildNumberPattern"
     }
-    buildNumberPattern = "%dep.SampleBuild_Step1_ID.env.BUILD_NUMBER%"
+    buildNumberPattern = "%dep.SampleBuild_Step1_ID.build.number%"
 
     triggers {
         add {
