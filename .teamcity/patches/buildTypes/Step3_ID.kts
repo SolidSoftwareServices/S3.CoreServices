@@ -9,6 +9,11 @@ To apply the patch, change the buildType with id = 'Step3_ID'
 accordingly, and delete the patch script.
 */
 changeBuildType(RelativeId("Step3_ID")) {
+    check(buildNumberPattern == "%build.counter%") {
+        "Unexpected option value: buildNumberPattern = $buildNumberPattern"
+    }
+    buildNumberPattern = "%dep.SampleBuild_Step1_ID.env.BUILD_NUMBER%"
+
     dependencies {
         expect(RelativeId("Step1_ID")) {
             snapshot {
