@@ -18,4 +18,18 @@ changeBuildType(RelativeId("Step2_ID")) {
             }
         }
     }
+
+    dependencies {
+        expect(RelativeId("Step1_ID")) {
+            snapshot {
+            }
+        }
+        update(RelativeId("Step1_ID")) {
+            snapshot {
+                reuseBuilds = ReuseBuilds.NO
+                onDependencyFailure = FailureAction.FAIL_TO_START
+            }
+        }
+
+    }
 }
