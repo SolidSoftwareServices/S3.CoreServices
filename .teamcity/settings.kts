@@ -30,14 +30,14 @@ version = "2020.2"
 
 project {
   
-	//sequential{
+	sequential{
 	   buildType(Step1_ID)
 	    /*parallel{
 			buildType(Step2_ID)
 			buildType(Step3_ID)
 	   }
 	   buildType(Step4_ID)*/
-	//}
+	}
 }
 
 object Step1_ID : BuildType({
