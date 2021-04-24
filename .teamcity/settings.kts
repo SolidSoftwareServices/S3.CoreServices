@@ -51,7 +51,7 @@ object Step1_ID : BuildType({
         powerShell {
             name = "Run payload"
             scriptMode = script {
-                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%.%system.teamcity.buildType.id% %env.BUILD_NUMBER%"""
             }
         }
     }
@@ -81,7 +81,7 @@ object Step2_ID : BuildType({
         powerShell {
             name = "Run payload"
             scriptMode = script {
-                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%.%system.teamcity.buildType.id% %env.BUILD_NUMBER%"""
             }
         }
     }
@@ -95,7 +95,7 @@ object Step3_ID : BuildType({
         powerShell {
             name = "Run payload"
             scriptMode = script {
-                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%.%system.teamcity.buildType.id% %env.BUILD_NUMBER%"""
             }
         }
     }
@@ -108,7 +108,7 @@ object Step4_ID : BuildType({
         powerShell {
             name = "Run payload"
             scriptMode = script {
-                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%  %env.BUILD_NUMBER%"""
+                content = """Write-Host "Payload info:" %env.TEAMCITY_PROJECT_NAME%.%system.teamcity.buildType.id% %env.BUILD_NUMBER%"""
             }
         }
     }
