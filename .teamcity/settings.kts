@@ -98,10 +98,10 @@ object Step2_ID : BuildType({
     //         successfulOnly = true
     //     }
     // }
-    // dependencies {
-    //     snapshot(Step1_ID) {
-    //     }
-    // }
+    dependencies {
+        snapshot(Step1_ID) {
+        }
+    }
 
 })
 
@@ -125,10 +125,10 @@ object Step3_ID : BuildType({
     //         successfulOnly = true
     //     }
     // }
-    // dependencies {
-    //     snapshot(Step1_ID) {
-    //     }
-    // }
+    dependencies {
+        snapshot(Step1_ID) {
+        }
+    }
 
 })
 object Step4_ID : BuildType({
