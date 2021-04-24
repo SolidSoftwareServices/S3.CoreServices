@@ -80,6 +80,9 @@ object Step1_ID : BuildType({
 
 object Step2_ID : BuildType({
     name = "SampleBuild_Step2"
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 
     steps {
         powerShell {
@@ -104,6 +107,9 @@ object Step2_ID : BuildType({
 
 object Step3_ID : BuildType({
     name = "SampleBuild_Step3"
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 
     steps {
         powerShell {
@@ -127,6 +133,9 @@ object Step3_ID : BuildType({
 })
 object Step4_ID : BuildType({
     name = "SampleBuild_Step4"
+    vcs {
+        root(DslContext.settingsRoot)
+    }
 
     steps {
         powerShell {
