@@ -10,6 +10,11 @@ To apply the patch, change the buildType with id = 'Step2_ID'
 accordingly, and delete the patch script.
 */
 changeBuildType(RelativeId("Step2_ID")) {
+    check(buildNumberPattern == "%build.counter%") {
+        "Unexpected option value: buildNumberPattern = $buildNumberPattern"
+    }
+    buildNumberPattern = "%dep.SampleBuild_Step1_ID.env.BUILD_NUMBER%"
+
     triggers {
         add {
             finishBuildTrigger {
